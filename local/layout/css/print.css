@@ -1,0 +1,110 @@
+* {color:#101010 !important; background:none !important}
+
+html {min-width:0; width:1000px}
+body {min-width:0; width:1000px; color:#101010; font-size:19px}
+
+.wrapper {font-size:19px}
+
+a {color:#101010 !important}
+
+ul {list-style:disc inside}
+ul li {padding-left:0}
+ul li:before {display:none}
+ol {list-style:decimal inside}
+ol li {padding-left:0}
+ol li:before {display:none}
+blockquote {border-left-color:#101010}
+
+.wrapper tbody tr:nth-child(odd) td {background:transparent}
+.wrapper tbody tr td {border-top:1px solid #000}
+
+.btn {display:none}
+.btn-reset {display:none}
+
+form {display:none}
+
+.pager {display:none !important}
+
+.container {max-width:none; width:auto}
+
+.wrapper {width:auto; padding:0 40px}
+
+.page-brand .wrapper {padding-top:0; background:none !important}
+.brand-content-bg {display:none}
+.brand-link {display:none}
+
+.banner-top {display:none}
+
+header {height:auto; border-bottom:1px solid #c4c4c4; padding:0 0 27px 0; margin:0 0 42px 0}
+.header-inner {height:auto}
+.header-inner::after {content:""; display:block; clear:both}
+
+.fixed .header-inner {position:relative; left:auto; top:auto; right:auto; background:transparent; z-index:auto; height:auto}
+.fixed .header-inner .container {height:auto}
+
+.logo {float:left; width:auto; height:auto; margin:19px 0 0 0}
+.logo a {position:relative; left:auto; top:auto; bottom:auto; right:auto}
+.logo img {display:block}
+
+.header-title {display:none}
+.header-title-visible {display:none}
+.fixed .header-title {display:none}
+
+.menu-link {display:none}
+
+.header-login {display:none}
+.menu-open .header-login {display:none}
+
+.header-search {display:none}
+
+.header-lang {display:none}
+
+.banner-header {display:none}
+
+.header-print {display:block; float:right; text-align:right; padding:8px 0 0 0}
+.header-print-phone {font-weight:normal; font-size:18px; line-height:29px; color:#313131}
+.header-print-email {font-weight:normal; font-size:16px; line-height:26px; color:#727272}
+
+nav {display:none}
+
+.banner-side {display:none}
+
+.banner-content {display:none}
+
+.article-content {float:none; width:auto}
+
+.article-side {display:none}
+
+.article-header-type {border-right:1px solid #101010; background:none; line-height:26px; padding:0 20px 0 0}
+
+.article-info-view {display:none}
+
+.article-photo {margin-left:0; margin-right:0}
+.article-photo img {width:auto}
+
+.article-social {display:none}
+
+.article-theme {display:none}
+
+.article-subscribe {display:none}
+
+.article-tags {display:none}
+
+.main-news-companies {display:none}
+
+.other {display:none}
+
+footer {background:none; border-top:1px solid #c4c4c4; padding:28px 0 24px 0}
+.footer-subscribe {display:none}
+.footer-content {display:none}
+.footer-bottom {margin:0; border:none}
+.footer-copyrights {padding:0}
+.footer-copyrights-logo {display:block; line-height:0; padding:0 0 19px 0}
+.footer-developer {display:none}
+.footer-age {display:none}
+
+.footer-print {display:block; float:right; text-align:right; padding:25px 0 0 0}
+.footer-print-phone {font-weight:normal; font-size:18px; line-height:29px; color:#313131}
+.footer-print-email {font-weight:normal; font-size:16px; line-height:26px; color:#727272}
+
+.doc-link-block {display:none}

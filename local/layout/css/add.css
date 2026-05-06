@@ -1,0 +1,9 @@
+.menu-open .header-title{margin-left:33px;} /* ������� �������� ����� � ������������ ����*/
+.main-news-content {overflow-anchor: none}
+.window-text em.small{font-size: 14px}
+.to-lin {display:inline;}
+.article-info-item-authors span.author-no-post{border-bottom: none; cursor: default;}
+p + div.banner-content{ margin: 0 0 42px 0; }
+@media screen and (max-width:1159px) {
+	.footer-menu-item ul li+li+li+li+li+li+li+li {margin-top:18px;}
+}
