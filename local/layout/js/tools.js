@@ -442,9 +442,11 @@ $(document).ready(function() {
 	});
 
 	window.setInterval(function(e) {
-		$('.main-big').each(function() {
-			$(this).find('.main-big-type-links').css({'top': $(this).find('.main-big-type').offset().top - $(this).offset().top, 'opacity': 1});
-			$(this).find('.main-big-type').css({'opacity': 0});
+		$('.main-big:visible').each(function() {
+            if ($(this).find('.main-big-type').length == 1) {
+                $(this).find('.main-big-type-links').css({'top': $(this).find('.main-big-type').offset().top - $(this).offset().top, 'opacity': 1});
+                $(this).find('.main-big-type').css({'opacity': 0});
+            }
 		});
 
 		$('.main-mini').each(function() {
@@ -464,16 +466,6 @@ $(document).ready(function() {
 			$(this).find('.category-content-type').css({'opacity': 0});
 		});
 	}, 100);
-
-	$('.header-lang-mobile').click(function() {
-		$('.header-lang').toggleClass('open');
-	});
-
-	$(document).click(function(e) {
-		if ($(e.target).parents().filter('.header-lang').length == 0) {
-			$('.header-lang').removeClass('open');
-		}
-	});
 
 	$('body').on('click', '.article-info-item-authors span', function() {
 		if ($(this).hasClass('open')) {
@@ -782,30 +774,6 @@ $(window).on('load resize', function() {
 		});
 	});
 
-	$('.magazine-archive-list').each(function() {
-		var curList = $(this);
-
-		curList.find('.magazine-archive-item-preview').css({'min-height': '0px'});
-
-		curList.find('.magazine-archive-item-preview').each(function() {
-			var curBlock = $(this);
-			var curHeight = curBlock.outerHeight();
-			var curTop = curBlock.offset().top;
-
-			curList.find('.magazine-archive-item-preview').each(function() {
-				var otherBlock = $(this);
-				if (otherBlock.offset().top == curTop) {
-					var newHeight = otherBlock.outerHeight();
-					if (newHeight > curHeight) {
-						curBlock.css({'min-height': newHeight + 'px'});
-					} else {
-						otherBlock.css({'min-height': curHeight + 'px'});
-					}
-				}
-			});
-		});
-	});
-
 	if ($(window).width() > 1159) {
 		$('.main-calendar-list, .main-navigator-list, .magazine-archive-years, .page-404-tab-list').each(function() {
 			var curList = $(this);
@@ -985,64 +953,6 @@ function windowClose() {
 	}
 }
 
-const googleTranslateConfig = {
-	lang: 'ru'
-};
-
-function TranslateInit() {
-
-	var code = TranslateGetCode();
-	$('.header-lang-list button').removeClass('active');
-	$('.header-lang-list button[data-google-lang="' + code + '"]').addClass('active');
-	$('.header-lang-mobile').removeClass('header-lang-list-ru header-lang-list-en header-lang-list-it header-lang-list-fr').addClass('header-lang-list-' + code);
-
-	if (code == googleTranslateConfig.lang) {
-		TranslateClearCookie();
-	}
-
-	new google.translate.TranslateElement({
-		pageLanguage: googleTranslateConfig.lang
-	});
-
-	$('[data-google-lang]').click(function(e) {
-		TranslateSetCookie($(this).attr('data-google-lang'));
-		$('.header-lang').removeClass('open');
-		e.preventDefault();
-		window.location.reload();
-	});
-}
-
-function TranslateGetCode() {
-	var lang = (Cookies.get('googtrans') != undefined && Cookies.get('googtrans') != 'null') ? Cookies.get('googtrans') : googleTranslateConfig.lang;
-	return lang.substr(-2);
-}
-
-function TranslateClearCookie() {
-	Cookies.remove("googtrans");
-}
-
-function TranslateSetCookie(code) {
-	Cookies.set("googtrans", "\/"+googleTranslateConfig.lang+"\/" + code, {
-		path: '/'
-	});
-	Cookies.set("googtrans", "\/"+googleTranslateConfig.lang+"\/" + code, {
-		domain: "." + document.domain,
-		path: '/'
-	});
-	Cookies.set("googtrans", "\/"+googleTranslateConfig.lang+"\/" + code, {
-		domain: document.domain,
-		path: '/'
-	});
-	domainArr = document.domain.split('.');
-	if(domainArr.length > 2){
-	  domain = domainArr.slice(1).join('.');
-	  Cookies.set("googtrans", "\/"+googleTranslateConfig.lang+"\/" + code, {
-		  domain: "."+domain,
-		  path: '/'
-	  });
-	}
-}
-
 var arr = document.querySelectorAll('img.lzy_img');
 
 if ('IntersectionObserver' in window) {
@@ -1148,3 +1058,38 @@ function filterGuide(isScroll) {
 		}
 	});
 }
+
+
+$(document).ready(function() {
+
+    $('.menu-section-list-business-title span').click(function(e) {
+        $(this).parent().parent().toggleClass('open');
+        e.preventDefault();
+    });
+
+    $('.magazine-archive-item-contain-title span').click(function(e) {
+        let curWidth = $(window).width();
+        if (curWidth < 1160) {
+            if (curWidth < 480) {
+                curWidth = 480;
+            }
+            const curScroll = $(window).scrollTop();
+            $('html').addClass('magazine-archive-item-mobile-open');
+            $('.wrapper').css({'top': -curScroll});
+            $('.wrapper').data('curScroll', curScroll);
+            $('meta[name="viewport"]').attr('content', 'width=' + curWidth);
+            $(this).parents().filter('.magazine-archive-item').addClass('mobile-open');
+        }
+    });
+
+    $('.magazine-archive-item-preview-text-close').click(function(e) {
+        if ($('html').hasClass('magazine-archive-item-mobile-open')) {
+            $('html').removeClass('magazine-archive-item-mobile-open');
+            $('.wrapper').css({'top': 0});
+            $(window).scrollTop($('.wrapper').data('curScroll'));
+            $('meta[name="viewport"]').attr('content', 'width=device-width');
+            $('.magazine-archive-item.mobile-open').removeClass('mobile-open');
+        }
+    });
+
+});
