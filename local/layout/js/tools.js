@@ -1066,6 +1066,15 @@ $(document).ready(function() {
         $(this).parent().parent().toggleClass('open');
         e.preventDefault();
     });
+    
+    $('.magazine-archive-item').mouseenter(function() {
+        const curItem = $(this);
+        let newHeight = curItem.outerHeight() + 40;
+        if (curItem.outerHeight() < curItem.find('.magazine-archive-item-preview-text').outerHeight() + 59) {
+            newHeight = curItem.find('.magazine-archive-item-preview-text').outerHeight() + 59 + 40;
+        }
+        curItem.find('.magazine-archive-item-bg').css({'height': newHeight});
+    });
 
     $('.magazine-archive-item-contain-title span').click(function(e) {
         let curWidth = $(window).width();

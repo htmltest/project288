@@ -33,7 +33,8 @@ body {
 }
 
 .fonts-loaded .wrapper,
-.fonts-loaded .window {
+.fonts-loaded .window,
+.fonts-loaded .cookie-banner {
     font-family: 'Avenir Next Demi', Roboto, sans-serif;
 }
 
@@ -6368,6 +6369,7 @@ min-width: 100%;
     margin:0 15px;
     position: relative;
 }
+.magazine-archive-item-bg {display:none}
 .magazine-archive-item-preview {
     position: relative
 }
@@ -6384,6 +6386,7 @@ min-width: 100%;
     width: calc(100% - 20px);
     opacity: 0;
     transition: opacity 0.2s;
+    visibility: hidden;
 }
 .magazine-archive-item-preview-text-title {margin:0 0 15px 0; font-weight:700; font-size:16px; line-height:20px; color:#000000; text-transform:uppercase}
 .magazine-archive-item-preview-text-anonce {font-size:14px; line-height:17px; letter-spacing:0; color:#656565}
@@ -6406,11 +6409,12 @@ min-width: 100%;
     .magazine-archive-item:hover {
         z-index:1
     }
-    .magazine-archive-item:hover::before {
-        content:""; display:block; position:absolute; left:-20px; top:-20px; right:calc(-100% - 30px); bottom:-20px; background:#FFFFFF; border:1px solid #B9B9B9;
+    .magazine-archive-item:hover .magazine-archive-item-bg {
+        display:block; position:absolute; left:-20px; top:-20px; right:calc(-100% - 30px); background:#FFFFFF; border:1px solid #B9B9B9;
     }
     .magazine-archive-item:hover .magazine-archive-item-preview-text {
         opacity: 1;
+        visibility: visible;
     }
 }
 
@@ -6441,6 +6445,15 @@ min-width: 100%;
 }
 .magazine-archive-item-contain-title span {
     border-bottom:1px dotted #E85256;
+}
+
+@media screen and (min-width: 1160px) {
+    .magazine-archive-item:hover .magazine-archive-item-contain-title {
+        color:#656565;
+    }
+    .magazine-archive-item:hover .magazine-archive-item-contain-title span {
+        border-bottom-color:transparent;
+    }
 }
 
 @media screen and (max-width: 1159px) {
@@ -6517,9 +6530,9 @@ min-width: 100%;
 @media screen and (max-width: 1159px) {
     .magazine-archive-item-mobile-open,
     .magazine-archive-item-mobile-open body {overflow:hidden; position:fixed}
-    .magazine-archive-item.mobile-open .magazine-archive-item-preview-text {display:block; opacity:1; position:fixed; left:0; top:0; right:0; bottom:0; overflow:auto; text-align:center; z-index:99; background:rgba(0, 0, 0, 0.6); width:auto; margin:0}
+    .magazine-archive-item.mobile-open .magazine-archive-item-preview-text {display:block; opacity:1; visibility:visible; position:fixed; left:0; top:0; right:0; bottom:0; overflow:auto; text-align:center; z-index:99; background:rgba(0, 0, 0, 0.6); width:auto; margin:0}
     .magazine-archive-item-preview-text::before {content:""; display:inline-block; vertical-align:middle; width:0; height:100%}
-    .magazine-archive-item-preview-text-inner {display:inline-block; text-align:left; vertical-align:middle; width:400px; background:#FFFFFF; border:1px solid #B9B9B9; padding:10px; position:relative}
+    .magazine-archive-item-preview-text-inner {display:inline-block; text-align:left; vertical-align:middle; width:400px; background:#FFFFFF; border:1px solid #B9B9B9; padding:10px; position:relative; margin:10px 0}
     .magazine-archive-item-preview-text-magazine-title {display:block; font-weight:750; font-size:16px; line-height:20px; margin:0 0 22px 0; color:#000000}
     .magazine-archive-item-preview-text-btns {display:block; margin:22px 0 0 0}
     .magazine-archive-item-preview-text-btns .magazine-archive-item-btns {flex-direction:row; gap:0 10px; margin:0}
